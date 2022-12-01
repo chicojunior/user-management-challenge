@@ -1,1 +1,40 @@
-<p>login works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <form [formGroup]="loginForm">
+      <mat-form-field class="form-field-full">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" placeholder="Ex. john@tonicapp.com">
+        <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field-full">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <p>
+        Real-time data: {{ loginForm.value | json }}
+      </p>
+      <p>
+        Your form status is : {{ loginForm.status }}
+      </p>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button type="submit" mat-raised-button color="primary" [disabled]=!loginForm.valid>
+      Login
+    </button>
+  </mat-card-actions>
+</mat-card>
