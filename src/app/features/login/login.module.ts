@@ -5,12 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent, LoginFormComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -19,6 +22,7 @@ import { LoginComponent } from './login.component';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
   ],
 })
 export class LoginModule {}
