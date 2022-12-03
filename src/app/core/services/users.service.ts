@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, catchError, map, Observable, tap, noop } from 'rxjs';
 import { User } from '../models/user';
 import { BASE_URL } from '../constants';
 
@@ -10,7 +10,32 @@ import { BASE_URL } from '../constants';
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<any> {
-    return this.http.get<any>(`${BASE_URL}/users`).pipe(map((res) => res.data));
+  usersList = new BehaviorSubject([]);
+  currentPage = new BehaviorSubject(0);
+  totalPages = new BehaviorSubject(0);
+
+  fetchUsers(page?: number) {
+    const params = new HttpParams();
+
+    if (page) {
+      params.set('page', page);
+    }
+
+    this.http
+      .get<any>(`${BASE_URL}/users`, { params })
+      .pipe(
+        catchError((error) => error),
+        tap((data) => console.log(data)),
+        map((res) => {
+          this.currentPage.next(res.page);
+          this.totalPages.next(res.total_pages);
+          this.usersList.next(res.data);
+        })
+      )
+      .subscribe(noop);
+  }
+
+  getUserList(): Observable<any> {
+    return this.usersList;
   }
 }

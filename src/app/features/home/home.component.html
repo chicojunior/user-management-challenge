@@ -1,1 +1,6 @@
-<p *ngFor="let user of users$ | async">{{ user | json }}</p>
+<div class="home">
+  <p *ngFor="let user of users">{{ user | json }}</p>
+
+  <button *ngIf="currentPage < totalPages" (click)="loadMore()">Load more</button>
+
+</div>
