@@ -4,15 +4,15 @@ import { HomeComponent } from './features/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: 'auth',
     loadChildren: () =>
-      import('./features/login/login.module').then((m) => m.LoginModule),
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'home',
     component: HomeComponent,
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

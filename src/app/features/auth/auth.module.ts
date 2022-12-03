@@ -7,22 +7,23 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
+import { AuthRoutingModule } from './auth-routing.module';
+
+import { AuthComponent } from './auth.component';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, LoginFormComponent],
+  declarations: [LoginComponent, RegisterComponent, AuthComponent],
   imports: [
     CommonModule,
-    MatCardModule,
-    LoginRoutingModule,
+    AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
   ],
 })
-export class LoginModule {}
+export class AuthModule {}
