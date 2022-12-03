@@ -15,21 +15,25 @@ export class UsersService {
   totalPages = new BehaviorSubject(0);
 
   fetchUsers(page?: number) {
-    const params = new HttpParams();
+    let url = `${BASE_URL}/users`;
 
     if (page) {
-      params.set('page', page);
+      url = `${url}?page=${page}`;
     }
 
     this.http
-      .get<any>(`${BASE_URL}/users`, { params })
+      .get<any>(url)
       .pipe(
         catchError((error) => error),
         tap((data) => console.log(data)),
         map((res) => {
+          const list = this.usersList.value.length
+            ? this.usersList.value.concat(res.data)
+            : res.data;
+
           this.currentPage.next(res.page);
           this.totalPages.next(res.total_pages);
-          this.usersList.next(res.data);
+          this.usersList.next(list);
         })
       )
       .subscribe(noop);

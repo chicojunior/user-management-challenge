@@ -24,5 +24,11 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  loadMore() {}
+  loadMore() {
+    const page = this.currentPage + 1;
+
+    if (!(page > this.totalPages)) {
+      this.usersService.fetchUsers(page);
+    }
+  }
 }
