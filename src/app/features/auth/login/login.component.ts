@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,14 @@ import { Validators, FormBuilder } from '@angular/forms';
 })
 export class LoginComponent {
   hide = true;
-  loginForm = this.fb.group({
-    email: ['', Validators.compose([Validators.required, Validators.email])],
-    password: ['', Validators.required],
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private router: Router) {}
+
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
 }
