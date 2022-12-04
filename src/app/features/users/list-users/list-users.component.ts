@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.service';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-list-users',
@@ -15,11 +16,16 @@ export class ListUsersComponent implements OnInit, OnDestroy {
   isLoading = false;
   subscriptions: Subscription[] = [];
 
-  constructor(private usersService: UsersService, private router: Router) {
+  constructor(
+    private usersService: UsersService,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.isLoading = true;
   }
 
   ngOnInit(): void {
+    this.authService.setTokenExpirationTimeout();
     this.usersService.fetchUsers();
     this.subscriptions.push(
       this.usersService.usersList.subscribe((list: any[]) => {

@@ -8,11 +8,15 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. The command `npm run build:prod` creates a build optimzed to be used on the production environment/server.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. The command `npm run build:prod` creates a build optimized to be used on the production environment/server.
+
+## Token Expiration
+
+About the token expiration functionality, the default time for expiration is set to 7 minutes. This time can be changed on the constant TOKEN_TIMEOUT, set on core/constants.ts file.
 
 ## Registering/Creating new users
 
-For some reason I was only able to register users on reqres.in using known emails from their list on the resource /users [GET /users](https://reqres.in/api-docs/#/default/get_users). To test the register new user please, use some of the knwon emails listed here:
+For some reason, I was only able to register users on reqres.in using known emails from their list on the resource /users [GET /users](https://reqres.in/api-docs/#/default/get_users). To test the register new user please, use some of the known emails listed here:
 
 - george.bluth@reqres.in
 - janet.weaver@reqres.in
@@ -23,6 +27,6 @@ For some reason I was only able to register users on reqres.in using known email
 
 _Obs: the password can be anyone you want._
 
-### _Issue on create new user_
+### _Issue on creating new user_
 
-_The [API](https://reqres.in/api-docs/#/) doesn't have a resource to create new users. The route and function is implemented as requested but is not able to persist on the server._
+_The [API](https://reqres.in/api-docs/#/) doesn't have a resource to create new users. The route and function are implemented as requested but are not able to persist on the server._

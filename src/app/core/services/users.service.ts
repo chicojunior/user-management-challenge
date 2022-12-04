@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   BehaviorSubject,
   catchError,
@@ -11,11 +7,8 @@ import {
   Observable,
   tap,
   noop,
-  debounceTime,
-  delay,
   throwError,
 } from 'rxjs';
-import { User } from '../models/user';
 import { BASE_URL } from '../constants';
 
 @Injectable({
