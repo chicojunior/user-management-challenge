@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import {
   BehaviorSubject,
   catchError,
@@ -9,6 +13,7 @@ import {
   noop,
   debounceTime,
   delay,
+  throwError,
 } from 'rxjs';
 import { User } from '../models/user';
 import { BASE_URL } from '../constants';
@@ -24,18 +29,18 @@ export class UsersService {
   totalPages = new BehaviorSubject(0);
 
   fetchUsers(page?: number) {
-    let url = `${BASE_URL}/users`;
+    let params = {};
 
     if (page) {
-      url = `${url}?page=${page}`;
+      params = {
+        page,
+      };
     }
 
     this.http
-      .get(url)
+      .get(`${BASE_URL}/users`, { params: params })
       .pipe(
-        catchError((error) => {
-          return error;
-        }),
+        catchError(this.handleError),
         tap((data) => console.log(data)),
         map((res: any) => {
           const list = this.usersList.value.length
@@ -52,5 +57,19 @@ export class UsersService {
 
   getUserList(): Observable<any> {
     return this.usersList;
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, body was: `,
+        error.error
+      );
+    }
+    return throwError(
+      () => new Error('Something bad happened; please try again later.')
+    );
   }
 }

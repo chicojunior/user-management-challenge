@@ -7,5 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [PageNotFoundComponent],
   imports: [CommonModule, HttpClientModule],
+  exports: [PageNotFoundComponent],
 })
 export class CoreModule {}

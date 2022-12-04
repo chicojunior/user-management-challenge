@@ -3,19 +3,19 @@
 
   <mat-card>
     <mat-card-content>
-      <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+      <form [formGroup]="addUserForm">
         <mat-form-field>
           <mat-label>First name</mat-label>
-          <input type="text" matInput formControlName="firstName">
-          <mat-error *ngIf="addUserForm.controls.firstName.hasError('required')">
+          <input type="text" matInput formControlName="first_name">
+          <mat-error *ngIf="addUserForm.controls.first_name.hasError('required')">
             First name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Last name</mat-label>
-          <input type="text" matInput formControlName="lastName">
-          <mat-error *ngIf="addUserForm.controls.lastName.hasError('required')">
+          <input type="text" matInput formControlName="last_name">
+          <mat-error *ngIf="addUserForm.controls.last_name.hasError('required')">
             Last name is <strong>required</strong>
           </mat-error>
         </mat-form-field>
@@ -23,22 +23,19 @@
         <div class="avatar-form-field">
           <mat-form-field>
             <mat-label>Avatar URL</mat-label>
-            <input type="text" matInput formControlName="avatarUrl">
-            <mat-error *ngIf="addUserForm.controls.avatarUrl.hasError('required')">
+            <input type="text" matInput formControlName="avatar">
+            <mat-error *ngIf="addUserForm.controls.avatar.hasError('required')">
               Avatar URL is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-          <img *ngIf="addUserForm.controls.avatarUrl.value" mat-card-avatar
-            src="{{ addUserForm.controls.avatarUrl.value }}">
-          <img *ngIf="!addUserForm.controls.avatarUrl.value" mat-card-avatar
-            src="https://avatars.dicebear.com/api/adventurer-neutral/:seed.svg">
-
+          <img *ngIf="isValidHttpUrl(addUserForm.controls.avatar.value)" mat-card-avatar
+            src="{{ addUserForm.controls.avatar.value }}">
         </div>
 
 
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input type="email" matInput formControlName="email" placeholder="Ex. john@tonicapp.com">
+          <input type="email" matInput formControlName="email" placeholder="Ex. johndoe@tonicapp.com">
           <mat-error
             *ngIf="addUserForm.controls.email.hasError('email') && !addUserForm.controls.email.hasError('required')">
             Please enter a valid email address
@@ -63,8 +60,8 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-raised-button>Cancel</button>
-      <button type="submit" mat-raised-button color="primary" [disabled]=!addUserForm.valid>Add user</button>
+      <button mat-raised-button (click)="goToListPage()">Cancel</button>
+      <button mat-raised-button color="primary" [disabled]=!addUserForm.valid (click)="addUser()">Add user</button>
     </mat-card-actions>
 
   </mat-card>
