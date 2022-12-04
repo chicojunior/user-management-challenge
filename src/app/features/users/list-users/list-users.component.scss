@@ -1,0 +1,42 @@
+.users-list {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .add-user {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 8px;
+  }
+
+  .load-user {
+    margin-bottom: 1rem;
+    button {
+      width: 100%;
+    }
+  }
+
+  .home-loader {
+    display: flex;
+    justify-content: center;
+
+    mat-spinner {
+      width: 60px !important;
+      height: 60px !important;
+    }
+  }
+
+  h1 {
+    font-weight: 500;
+  }
+
+  mat-card {
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  mat-list-item {
+    background-color: #fff;
+  }
+}
