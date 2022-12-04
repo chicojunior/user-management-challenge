@@ -10,12 +10,18 @@ export class HomeComponent implements OnInit {
   users: any[] = [];
   currentPage = 0;
   totalPages = 0;
+  isLoading = false;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService) {
+    this.isLoading = true;
+  }
 
   ngOnInit(): void {
     this.usersService.fetchUsers();
-    this.usersService.usersList.subscribe((list) => (this.users = list));
+    this.usersService.usersList.subscribe((list) => {
+      this.isLoading = false;
+      this.users = list;
+    });
     this.usersService.currentPage.subscribe(
       (page) => (this.currentPage = page)
     );

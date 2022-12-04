@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, Observable, tap, noop } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  tap,
+  noop,
+  debounceTime,
+  delay,
+} from 'rxjs';
 import { User } from '../models/user';
 import { BASE_URL } from '../constants';
 
@@ -22,11 +31,13 @@ export class UsersService {
     }
 
     this.http
-      .get<any>(url)
+      .get(url)
       .pipe(
-        catchError((error) => error),
+        catchError((error) => {
+          return error;
+        }),
         tap((data) => console.log(data)),
-        map((res) => {
+        map((res: any) => {
           const list = this.usersList.value.length
             ? this.usersList.value.concat(res.data)
             : res.data;

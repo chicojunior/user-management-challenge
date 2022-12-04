@@ -1,6 +1,27 @@
 <div class="home">
-  <p *ngFor="let user of users">{{ user | json }}</p>
+  <h1>Users List</h1>
 
-  <button *ngIf="currentPage < totalPages" (click)="loadMore()">Load more</button>
+  <div class="add-user">
+    <button mat-raised-button color="primary">
+      <mat-icon>add</mat-icon> Add User
+    </button>
+  </div>
+
+  <div class="user-list">
+    <mat-card *ngFor="let user of users">
+      <mat-card-header>
+        <img mat-card-avatar src="{{ user?.avatar }}"
+          alt="Avatar image of {{ user?.first_name }} {{ user?.last_name }}">
+        <mat-card-title>{{ user?.first_name }} {{ user?.last_name }}</mat-card-title>
+        <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <div class="load-user">
+    <button mat-raised-button color="primary" *ngIf="currentPage < totalPages" (click)="loadMore()">
+      Load More
+    </button>
+  </div>
 
 </div>
