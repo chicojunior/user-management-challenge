@@ -1,0 +1,16 @@
+.add-user {
+  .avatar-form-field {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-card-actions {
+    display: flex;
+    gap: 1rem;
+  }
+}

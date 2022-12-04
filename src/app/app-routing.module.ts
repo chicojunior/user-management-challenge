@@ -10,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent,
+    loadChildren: () =>
+      import('./features/home/home.module').then((m) => m.HomeModule),
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
