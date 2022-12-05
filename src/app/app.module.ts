@@ -9,6 +9,7 @@ import { HomeModule } from './features/home/home.module';
 import { AuthModule } from './features/auth/auth.module';
 
 import { AppComponent } from './app.component';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
     SharedModule,
     HomeModule,
     AuthModule,
+    HotToastModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

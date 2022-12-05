@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
   selector: 'app-add-user',
@@ -17,7 +19,7 @@ export class AddUserComponent {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UsersService) {}
 
   isValidHttpUrl(value: any) {
     let url;
@@ -32,8 +34,7 @@ export class AddUserComponent {
   }
 
   addUser() {
-    console.log('Clicked!!!');
-    console.log(this.addUserForm.value);
+    this.userService.addUser(this.addUserForm.value);
   }
 
   goToListPage() {

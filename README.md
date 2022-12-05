@@ -14,7 +14,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 About the token expiration functionality, the default time for expiration is set to 7 minutes. This time can be changed on the constant TOKEN_TIMEOUT, set on core/constants.ts file.
 
-## Registering/Creating new users
+## Registering new users
 
 For some reason, I was only able to register users on reqres.in using known emails from their list on the resource /users [GET /users](https://reqres.in/api-docs/#/default/get_users). To test the register new user please, use some of the known emails listed here:
 
@@ -29,4 +29,4 @@ _Obs: the password can be anyone you want._
 
 ### _Issue on creating new user_
 
-_The [API](https://reqres.in/api-docs/#/) doesn't have a resource to create new users. The route and function are implemented as requested but are not able to persist on the server._
+_The reqres.in [API](https://reqres.in/api-docs/#/) have a resource to create new users, but it doesn't appear on the users list whe it is fetched. The route and function are implemented as requested but are not able to persist on the server._

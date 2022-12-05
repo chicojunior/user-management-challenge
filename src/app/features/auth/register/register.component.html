@@ -30,7 +30,7 @@
   </mat-card-content>
   <mat-card-actions align="end">
     <button class="register-button" mat-button type="submit" mat-raised-button color="primary"
-      [disabled]=!registerForm.valid>
+      [disabled]=!registerForm.valid (click)="registerUser()">
       Register
     </button>
   </mat-card-actions>
